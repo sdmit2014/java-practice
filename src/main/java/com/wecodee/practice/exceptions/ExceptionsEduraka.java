@@ -7,8 +7,14 @@ public class ExceptionsEduraka {
 		new ExceptionsEduraka().builtInException();
 
 		new ExceptionsEduraka().handlingBuiltInExceptions();
-		
-		
+
+		new NestedTryCatchBlock().nestedTryBlock();
+
+		new NestedTryCatchBlock().nestedCatchBlock();
+
+		new NestedTryCatchBlock().finallyBlock();
+
+		new NestedTryCatchBlock().throwKeyWord();
 
 	}
 
@@ -122,10 +128,108 @@ public class ExceptionsEduraka {
 
 	}
 
-	
-
 }
 
-class Dhamu {
+class NestedTryCatchBlock {
+
+	public void nestedTryBlock() {
+		System.out.println("----------- Nested try-catch block -----------");
+		try {
+
+			try {
+
+				try {
+
+					System.out.println("2nd-Inner Exception Block");
+
+					String s = "escabara";
+					System.out.println("s-length :" + s.length());
+
+					String s1 = null;
+					System.out.println("s1-length :" + s1.length());
+
+				} catch (NullPointerException e) {
+					System.out.println("Causing NullPointerException");
+				}
+
+				System.out.println("1st-Inner Exception Block");
+
+				String c = "3452";
+				int i = Integer.parseInt(c);
+				System.out.println("Integer Conversion :" + i);
+
+				String c1 = "3A452";
+				int i1 = Integer.parseInt(c1);
+
+			} catch (NumberFormatException e) {
+				System.out.println("Causing NumberFormatException");
+			}
+
+			System.out.println("---Outer exception Block---");
+
+			int x = 10, y = 5;
+			int z = x / y;
+			System.out.println("Division :" + z);
+
+			int a = 10;
+			System.out.println(a / 0);
+
+		} catch (ArithmeticException e) {
+			System.out.println("Causing ArithmeticException");
+		}
+
+	}
+
+	public void nestedCatchBlock() {
+		System.out.println("----------- Nested Catch-catch block -----------");
+		try {
+
+			String s = "escabara";
+			System.out.println("s-length :" + s.length());
+
+			String s1 = null;
+			System.out.println("s1-length :" + s1.length());
+
+		} catch (ArrayIndexOutOfBoundsException e) {
+			System.out.println("Causes ArrayIndexOutOfBoundsException");
+		}
+
+		catch (NullPointerException e1) {
+			System.out.println("Causing NullPointerException");
+		}
+
+	}
+
+	public void finallyBlock() {
+
+		try {
+			System.out.println("--------- finallyBlock() -------------");
+
+			int num = Integer.parseInt("escabara");
+			System.out.println("Num :" + num);
+
+		} catch (NumberFormatException e) {
+
+			System.out.println("Causes NumberFormatException");
+
+		} finally {
+			System.out.println("Default finally Block");
+		}
+
+	}
+
+	static void throwKeyWord() {
+		try {
+
+			System.out.println("--------  throw --------");
+
+			throw new ArithmeticException("DemoThrow");
+
+		} catch (Exception e) {
+
+			System.out.println("throughs ArithmeticException");
+
+		}
+	}
 
 }
