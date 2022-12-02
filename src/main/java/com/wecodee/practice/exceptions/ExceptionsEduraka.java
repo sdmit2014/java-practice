@@ -1,5 +1,7 @@
 package com.wecodee.practice.exceptions;
 
+import java.util.Scanner;
+
 public class ExceptionsEduraka {
 
 	public static void main(String[] args) {
@@ -15,6 +17,30 @@ public class ExceptionsEduraka {
 		new NestedTryCatchBlock().finallyBlock();
 
 		new NestedTryCatchBlock().throwKeyWord();
+
+//		try {
+//			new NestedTryCatchBlock().throwsKeyWord();
+//		} finally {
+//			System.out.println("Caught");
+//		}
+
+		try {
+
+			throw new UserDefinedException(5);
+
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+
+		// UserDefined Exceptions
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter a number less than 100 : ");
+		int number = sc.nextInt();
+		try {
+			new SampleException().validateInput(number);
+		} catch (InvalidInputException e) {
+			System.out.println("Exception - Input is greater than 100");
+		}
 
 	}
 
@@ -232,4 +258,41 @@ class NestedTryCatchBlock {
 		}
 	}
 
+	static void throwsKeyWord() throws ArithmeticException {
+		System.out.println("-------- throws ---------");
+		System.out.println("Inside avg function");
+		throw new ArithmeticException("Demo");
+	}
+
 }
+
+//------------
+class UserDefinedException extends Exception {
+	int a;
+
+	UserDefinedException(int b) {
+		a = b;
+	}
+
+	public String toString() {
+		return ("Exception number :" + a);
+	}
+
+}
+
+//------------
+class SampleException {
+	static void validateInput(int number) throws InvalidInputException {
+		if (number > 100) {
+			throw new InvalidInputException("Exceptions");
+		}
+		System.out.println("Valid Input");
+	}
+}
+
+class InvalidInputException extends Exception {
+	InvalidInputException(String exceptionText) {
+		super(exceptionText);
+	}
+}
+//-----------
